@@ -60,14 +60,14 @@ class MarksCrud:
             })
         return marks_list
     
-    async def get_quiz_with_course_id_by_quiz_id_with_marks(db: AsyncSession, course_id: int):
+    async def get_quiz_with_course_id_by_quiz_id_with_marks(db: AsyncSession, course_id: int, student_id: int):
         try:
 
             # Step 2: Get marks where mark.quiz_id IN (quiz ids of that course)
             result = await db.execute(
                 select(models.StudentMark, models.Quiz)
                 .join(models.Quiz, models.StudentMark.quiz_id == models.Quiz.id)
-                .where(models.Quiz.course_id == course_id)
+                .where(models.Quiz.course_id == course_id, models.StudentMark.student_id == student_id)
             )
 
             data = []

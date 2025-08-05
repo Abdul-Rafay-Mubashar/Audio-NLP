@@ -144,8 +144,11 @@ async def create_quiz_endpoint(
                     break
                 except:
                     retry = retry - 1
+        mcqs, quizInfo = await QuizCrud.get_quiz_by_id(db, quiz.id)
+            
             # quiz = await create_quiz(db, quiz_data)
-        return {"message": "Quiz Updated successfully"}
+        return {"mcqs": mcqs, "quiz_info": quizInfo}
+            # quiz = await create_quiz(db, quiz_data)
     except Exception as e:
         print("❌ Error creating quiz:", e)
 
@@ -198,7 +201,7 @@ async def get_save_answers(
 
 
             if quiz.status == "COMPLETE":
-                await MarksCrud.create_marks(db, course_id, current_user.id, len(quiz_data['mcqs']), 0, quiz_data['mcqs'][0]['quiz_id'])
+                # await MarksCrud.create_marks(db, course_id, current_user.id, len(quiz_data['mcqs']), 0, quiz_data['mcqs'][0]['quiz_id'])
                 print("Marked zero becuase time exceded")
                 return
 
@@ -241,7 +244,7 @@ async def get_quizes_endpoint(
     try:
         if current_user:
             print(quiz_data)
-            marks = await MarksCrud.get_quiz_with_course_id_by_quiz_id_with_marks(db, quiz_data['course_id'])
+            marks = await MarksCrud.get_quiz_with_course_id_by_quiz_id_with_marks(db, quiz_data['course_id'], current_user.id)
 
             return marks
 
