@@ -1,0 +1,125 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Audio Recorder</title>
+</head>
+<body>
+  <h2>Audio Recorder</h2>
+  <button id="start">Start Recording</button>
+  <button id="stop" disabled>Stop Recording</button>
+  <audio id="player" controls></audio>
+  <a id="download" style="display: none;" download="recording.wav">Download Recording</a>
+
+  <script>
+    let mediaRecorder;
+    let audioChunks = [];
+
+    const startBtn = document.getElementById('start');
+    const stopBtn = document.getElementById('stop');
+    const player = document.getElementById('player');
+    const downloadLink = document.getElementById('download');
+
+    startBtn.onclick = async () => {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      mediaRecorder = new MediaRecorder(stream);
+      audioChunks = [];
+
+      mediaRecorder.ondataavailable = event => {
+        if (event.data.size > 0) {
+          audioChunks.push(event.data);
+        }
+      };
+
+      mediaRecorder.onstop = () => {
+        const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+        const audioUrl = URL.createObjectURL(audioBlob);
+        player.src = audioUrl;
+        downloadLink.href = audioUrl;
+        downloadLink.style.display = 'inline';
+      };
+
+      mediaRecorder.start();
+      startBtn.disabled = true;
+      stopBtn.disabled = false;
+    };
+
+    stopBtn.onclick = () => {
+      mediaRecorder.stop();
+      startBtn.disabled = false;
+      stopBtn.disabled = true;
+    };
+  </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Audio Recorder</title>
+</head>
+<body>
+  <h2>Audio Recorder</h2>
+  <button id="start">Start Recording</button>
+  <button id="pause" disabled>Pause</button>
+  <button id="stop" disabled>Stop Recording</button>
+  <audio id="player" controls></audio>
+  <a id="download" style="display: none;" download="recording1.webm">Download Recording</a>
+
+  <script>
+    let mediaRecorder;
+    let audioChunks = [];
+
+    const startBtn = document.getElementById('start');
+    const pauseBtn = document.getElementById('pause');
+    const stopBtn = document.getElementById('stop');
+    const player = document.getElementById('player');
+    const downloadLink = document.getElementById('download');
+
+    startBtn.onclick = async () => {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      mediaRecorder = new MediaRecorder(stream);
+      audioChunks = [];
+
+      mediaRecorder.ondataavailable = event => {
+        if (event.data.size > 0) {
+          audioChunks.push(event.data);
+        }
+      };
+
+      mediaRecorder.onstop = () => {
+        const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+        const audioUrl = URL.createObjectURL(audioBlob);
+        player.src = audioUrl;
+        downloadLink.href = audioUrl;
+        downloadLink.style.display = 'inline';
+      };
+
+      mediaRecorder.start();
+      startBtn.disabled = true;
+      pauseBtn.disabled = false;
+      stopBtn.disabled = false;
+      pauseBtn.textContent = 'Pause';
+    };
+
+    pauseBtn.onclick = () => {
+      if (mediaRecorder.state === 'recording') {
+        mediaRecorder.pause();
+        pauseBtn.textContent = 'Resume';
+      } else if (mediaRecorder.state === 'paused') {
+        mediaRecorder.resume();
+        pauseBtn.textContent = 'Pause';
+      }
+    };
+
+    stopBtn.onclick = () => {
+      mediaRecorder.stop();
+      startBtn.disabled = false;
+      pauseBtn.disabled = true;
+      stopBtn.disabled = true;
+      pauseBtn.textContent = 'Pause';
+    };
+  </script>
+</body>
+</html>
