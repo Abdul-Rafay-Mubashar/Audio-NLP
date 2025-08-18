@@ -61,6 +61,6 @@ class NotesCrud:
         notes.notes_text = text  
 
         await db.commit()  
-        await db.refresh(notes)
+        await db.refresh(notes) 
                 
         return notes

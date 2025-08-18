@@ -235,7 +235,7 @@ class NotesGenerator:
         return output_path
 
 
-    def audio_processor(self, input_file: str):
+    def audio_processor(self, input_file: str): 
         try:
             input_path = os.path.join(self.path, input_file)
             if os.path.exists(input_path):
@@ -245,7 +245,7 @@ class NotesGenerator:
                 silence_file = self.remove_silence(fixed_file, os.path.join(self.path, silent_filename))
                 middle_filename = f"middle_{input_file}"
                 middle_file = self.extract_middle_chunk(silence_file, os.path.join(self.path, middle_filename))
-                print(middle_file, middle_filename)
+                print(middle_file, middle_filename) 
                 language = self.audio_language_detection(middle_file)
                 print(f"Language Detected : {language}")
                 print(f"Language De : {language}")
