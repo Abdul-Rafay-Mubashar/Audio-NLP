@@ -1,22 +1,19 @@
+import os
+from dotenv import load_dotenv
 
+# Load environment variables from .env file
+load_dotenv()
 
-DATABASE_URL = "mysql+asyncmy://root:dcrafaymalik@localhost:3306/ai_powered_audio_nlp"
-AUTHJWT_SECRET_KEY = "All-Is-Well"
-ENCODEING_SECRET_KEY = b"Everything-Is-Great" 
+DATABASE_URL = os.getenv("DATABASE_URL")
+AUTHJWT_SECRET_KEY = os.getenv("AUTHJWT_SECRET_KEY")
+ENCODEING_SECRET_KEY = os.getenv("ENCODEING_SECRET_KEY").encode()
 
+EMAIL_PORT = int(os.getenv("EMAIL_PORT", 465))
+EMAIL_HOST = os.getenv("EMAIL_HOST")
+EMAIL_TLS = os.getenv("EMAIL_TLS", "True").lower() == "true"
+EMAIL_FROM = os.getenv("EMAIL_FROM")
+EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
 
-# Email Setting
+OPEN_AI_API = os.getenv("OPEN_AI_API")
 
-EMAIL_PORT = 465
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_TLS = True
-EMAIL_FROM = "rafayabdul31@gmail.com"
-EMAIL_PASSWORD = "razm xmdk lsww qrfv"
-
-
-# Open AI API Key
-
-OPEN_AI_API =  "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"
-
-
-CURRENT_SEMESTER = "S2022"
+CURRENT_SEMESTER = os.getenv("CURRENT_SEMESTER")
