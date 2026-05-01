@@ -120,7 +120,7 @@ The system includes a **production-level file handling mechanism** designed for 
 
 ### 🗄️ Database
 
-* PostgreSQL
+* MySQL
 
 ### 🔔 Notifications
 
