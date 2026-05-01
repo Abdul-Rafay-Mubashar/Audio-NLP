@@ -1,90 +1,173 @@
-🎓 Audio NLP: AI-Powered Learning Management Platform
-📌 Overview
+# 🎓 Audio NLP: Generative AI-Powered Learning Platform
 
-Audio NLP is an AI-powered Learning Management System that transforms spoken lectures into structured educational content. It automatically converts audio recordings into transcripts, summarized notes, and quizzes, enabling a fully automated teaching and learning experience.
+## 📌 Overview
 
-The system is built around two intelligent interfaces:
+Audio NLP is an AI-powered Learning Management System (LMS) that transforms spoken lectures into structured educational content. It automates the process of generating lecture notes and quizzes from audio recordings, reducing manual effort for educators and enhancing student learning experience.
 
-👨‍🏫 Teacher Panel (Content creation & automation)
-🎓 Student Panel (Learning & assessment)
-🚀 Key Features
-🧑‍🏫 Teacher Panel
-🎙️ Audio Lecture Recording
-Multiple audio sessions per lecture
-Automatic chunking & processing
+This system is based on advanced **Generative AI + NLP + Speech Recognition** technologies.
 
-🧠 AI-Powered Notes Generation
-Speech-to-text using Whisper AI
-Structured summarization using GPT
-Export notes as PDF & Word documents
+---
 
-📝 AI Quiz Generation
-Generate MCQs using GPT + spaCy NLP
-Fully editable quizzes (questions, options, schedules)
-Instant student notifications via email
+## 🚀 Key Features
 
-📚 Course Management
-Create & manage courses
-Upload & edit lecture notes
-Schedule quizzes and track results
-View student performance analytics
+### 👨‍🏫 Teacher Panel
 
-🎓 Student Panel
-📄 Instant access to AI-generated lecture notes
-🧪 Attempt timed quizzes with auto-submission
-⏱️ Auto-lock quizzes after deadline
-📊 View performance reports per course
-🔔 Real-time notifications for updates
-⚙️ System Architecture
-🔄 Processing Pipelines
+* 🎙️ Record multiple audio lectures per session
+* 🧠 Generate structured notes using AI
+* 📝 Automatically generate MCQ-based quizzes using NLP
+* ✏️ Edit notes and quizzes manually
+* 📊 View student performance analytics
+* 📅 Schedule quizzes with deadlines
 
-1. Audio Processing Pipeline
+### 🎓 Student Panel
 
-Audio input → Chunking → Whisper AI transcription → Database storage
+* 📄 Access AI-generated lecture notes
+* 🧪 Attempt quizzes with time limits
+* ⏱️ Auto-submission after deadline
+* 📊 View performance reports
+* 🔔 Receive real-time notifications
 
-2. Notes Generation Pipeline
+---
 
-Combined transcripts → GPT summarization → Structured notes → PDF/DOCX export
+## ⚙️ System Architecture
 
-3. Quiz Generation Pipeline
+### 🔄 Core Pipelines
 
-Notes → spaCy NLP parsing → GPT MCQ generation → Quiz storage & scheduling
+#### 1. Audio Processing Pipeline
 
-🧠 Tech Stack
+Audio Input → Chunking → Transcription → Storage
 
-Backend
-FastAPI / Django (core APIs & services)
-Node.js (support services / automation layer)
+#### 2. Notes Generation Pipeline
 
-AI / NLP
-OpenAI GPT (summarization & quiz generation)
-Whisper AI (speech-to-text)
-spaCy (text processing & entity extraction)
+Transcript → AI Summarization → Structured Notes → Export
 
-Database
-PostgreSQL / MongoDB (depending on module design)
+#### 3. Quiz Generation Pipeline
 
-🔔 Notifications System
-Email alerts for new quizzes
-Lecture updates
-Result publishing
+Notes → NLP Processing → MCQ Generation → Scheduling
 
-💡 Why This Project Matters
-⏱️ Reduces manual workload for teachers
-🧑‍🎓 Enhances student engagement with AI-driven learning
-📈 Scalable architecture for large academic systems
-🤖 Real-world integration of NLP + Generative AI
-📌 Future Improvements
-Real-time lecture streaming transcription
-AI-based student performance prediction
-Mobile app (Flutter / React Native)
-Multi-language support
+---
 
-⭐ Summary
+## 🌍 Multi-Language Support
 
-This project demonstrates a full-scale AI-driven education platform combining:
+* Supports **multi-language audio input** (Urdu, French, English, etc.)
+* Powered by Whisper for robust transcription across languages
+* All generated **notes are standardized in English** for consistency
+* Enables cross-language learning and accessibility
 
-Speech Recognition (Whisper)
-NLP Processing (spaCy)
-Generative AI (GPT)
-Full-stack backend engineering
+---
+
+## 📂 File Handling & Storage System
+
+The system includes a **production-level file handling mechanism** designed for scalability, reliability, and incremental processing.
+
+### 🔹 Incremental Audio Storage
+
+* Each lecture can have **multiple recordings**
+* Files follow a structured naming convention:
+
+  * `course_section_lecture_recordingNumber`
+* Prevents overwriting and maintains sequence integrity
+
+### 🔹 Audio Chunking
+
+* Large audio files are split into **~20MB chunks**
+* Ensures efficient processing with Whisper
+* Improves performance and avoids memory issues
+
+### 🔹 Queue-Based Processing
+
+* Separate processing queues:
+
+  * 🎙️ Recording Queue
+  * 🧠 Notes Queue
+  * 📝 Quiz Queue
+* Background workers process tasks **incrementally (FIFO)**
+
+### 🔹 Transcript Handling
+
+* Each chunk is transcribed independently
+* Transcripts are **incrementally merged**
+* Final combined transcript used for summarization
+
+### 🔹 Notes File Management
+
+* Notes are stored in:
+
+  * 📄 DOCX (editable)
+  * 📑 PDF (read-only)
+* Teachers can download, edit, and re-upload
+* System automatically **syncs and updates versions**
+
+### 🔹 Data Integrity
+
+* Incremental processing ensures **no data loss**
+* Versioning avoids overwrite conflicts
+* Database sync maintains consistency
+
+---
+
+## 🧠 Tech Stack
+
+### 🔧 Backend
+
+* FastAPI 
+
+### 🤖 AI & NLP
+
+* OpenAI GPT (Summarization & Quiz Generation)
+* Whisper AI (Speech-to-Text)
+* spaCy (Text Processing)
+
+### 🗄️ Database
+
+* PostgreSQL
+
+### 🔔 Notifications
+
+* Email-based alerts system
+
+---
+
+
+## ▶️ Usage
+
+1. Login as Teacher
+2. Create Course
+3. Upload / Record Audio Lecture
+4. Generate Notes
+5. Generate Quiz
+6. Schedule Quiz
+
+Students can:
+
+* View notes
+* Attempt quizzes
+* Track performance
+
+---
+
+## 📊 Results (From Research)
+
+* ⏱️ 70% reduction in manual workload
+* 📝 87.5% relevance in generated notes
+* 🎯 80% accuracy in quiz content
+
+---
+
+## 💡 Why This Project Matters
+
+* Automates educational content creation
+* Improves student engagement
+* Scalable for large institutions
+* Real-world AI application (NLP + Generative AI)
+
+---
+
+## 🔮 Future Improvements
+
+* Real-time lecture transcription
+* AI-based performance prediction
+* Mobile application (Flutter / React Native)
+* Advanced multi-language output support
+
+
